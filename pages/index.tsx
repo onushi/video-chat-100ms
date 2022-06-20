@@ -1,10 +1,19 @@
-import { selectIsConnectedToRoom, useHMSStore } from '@100mslive/react-sdk'
+import { useHMSActions } from '@100mslive/react-sdk'
 import Head from 'next/head'
 import Image from 'next/image'
+import { useEffect } from 'react'
 import styles from '../styles/Home.module.css'
 import LoginForm from './components/LoginForm'
 
 export default function Home() {
+  const hmsActions = useHMSActions();
+
+  useEffect(() => {
+    window.onunload = () => {
+      hmsActions.leave()
+    }
+  }, [hmsActions])
+
   return (
     <div className={styles.container}>
       <Head>
