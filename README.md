@@ -3,6 +3,8 @@
 
 ## Getting Started
 
+`NEXT_PUBLIC_ROOM_STAGE_TOKEN`用のStageトークンを用意しておく。
+
 ```sh
 yarn dev
 ```

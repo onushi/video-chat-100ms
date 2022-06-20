@@ -1,18 +1,26 @@
-import { useHMSActions } from "@100mslive/react-sdk";
+import {
+  selectIsConnectedToRoom,
+  useHMSActions,
+  useHMSStore,
+} from "@100mslive/react-sdk";
 import Head from "next/head";
 import Image from "next/image";
 import { useEffect } from "react";
 import styles from "../styles/Home.module.css";
 import LoginForm from "./components/LoginForm";
+import Room from "./components/Room";
 
 export default function Home() {
   const hmsActions = useHMSActions();
+  const isConnected = useHMSStore(selectIsConnectedToRoom);
 
   useEffect(() => {
     window.onunload = () => {
-      hmsActions.leave();
+      if (isConnected) {
+        hmsActions.leave();
+      }
     };
-  }, [hmsActions]);
+  }, [hmsActions, isConnected]);
 
   return (
     <div className={styles.container}>
@@ -23,7 +31,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <LoginForm />
+        {isConnected ? <Room /> : <LoginForm />}
       </main>
 
       <footer className={styles.footer}>
