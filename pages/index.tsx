@@ -1,18 +1,18 @@
-import { useHMSActions } from '@100mslive/react-sdk'
-import Head from 'next/head'
-import Image from 'next/image'
-import { useEffect } from 'react'
-import styles from '../styles/Home.module.css'
-import LoginForm from './components/LoginForm'
+import { useHMSActions } from "@100mslive/react-sdk";
+import Head from "next/head";
+import Image from "next/image";
+import { useEffect } from "react";
+import styles from "../styles/Home.module.css";
+import LoginForm from "./components/LoginForm";
 
 export default function Home() {
   const hmsActions = useHMSActions();
 
   useEffect(() => {
     window.onunload = () => {
-      hmsActions.leave()
-    }
-  }, [hmsActions])
+      hmsActions.leave();
+    };
+  }, [hmsActions]);
 
   return (
     <div className={styles.container}>
@@ -23,7 +23,7 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-          <LoginForm />
+        <LoginForm />
       </main>
 
       <footer className={styles.footer}>
@@ -32,12 +32,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
