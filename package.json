@@ -11,8 +11,10 @@
     "e2e": "start-server-and-test dev http://localhost:3000 cypress",
     "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
     "lint": "next lint",
-    "lint:fix": "yarn lint --fix",
-    "fmt": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json}'"
+    "lint:fix": "eslint src --config .eslintrc.json --ext .js,jsx,.ts,.tsx --fix",
+    "lint:cypress": "eslint cypress --config cypress/.eslintrc.json --ext .js,jsx,.ts,.tsx --fix",
+    "prettier": "prettier --write --ignore-path .gitignore './**/*.{js,jsx,ts,tsx,json,css}'",
+    "fmt": "yarn run prettier && yarn run lint:fix"
   },
   "dependencies": {
     "@100mslive/react-sdk": "^0.1.2",
